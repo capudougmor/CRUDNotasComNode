@@ -1,8 +1,11 @@
 const mongoose = require('mongoose')
 
-mongoose.connect('mongodb+srv://capu:capu@cluster0-yluuw.mongodb.net/test?retryWrites=true&w=majority', {
+const MONGODB_URI = process.env.MONGODB_URI
+
+mongoose.connect(MONGODB_URI, {
     useNewUrlParser: true,
     useUnifiedTopology: true
+
 }).then(() => {
     console.log('Conectado ao banco de dados')
 }).catch((err) => {
