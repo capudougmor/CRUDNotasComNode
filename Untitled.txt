@@ -1,0 +1,2 @@
+MONGODB_URI='mongodb+srv://capu:capu@cluster0-yluuw.mongodb.net/test?retryWrites=true&w=majority'
+
