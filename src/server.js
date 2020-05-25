@@ -1,10 +1,16 @@
 const express = require('express')
-const path = require('path')
- 
+const path = require('path') 
 const app = express()
+const nunjucks = require('nunjucks')
 
 //Configuracoes
-app.set('views', path.join(__dirname, 'views'))
+//app.set('views', path.join(__dirname, 'views'))
+
+ //nunjucks
+nunjucks.configure('./src/views',{
+    express: app,
+    noCache: true,
+})
 
 
 //Middlewares
@@ -15,7 +21,7 @@ app.use(express.urlencoded({extended: false}))
 
 //Routes
 app.get('/', (req, res) => {
-    res.send('Hello casa')
+    res.render('main.html')
 })
 
 //estaticos
