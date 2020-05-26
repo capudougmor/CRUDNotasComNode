@@ -20,9 +20,7 @@ app.use(express.urlencoded({extended: false}))
 
 
 //Routes
-app.get('/', (req, res) => {
-    res.render('main.html')
-})
+app.use(require('./routes/index.routes.js'))
 
 //estaticos
 app.use(express.static(path.join(__dirname, 'public')))
