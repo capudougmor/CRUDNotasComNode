@@ -25,6 +25,6 @@ app.use(require('./routes/notes.routes.js'))
 
 
 //estaticos
-app.use(express.static(path.join(__dirname, 'public')))
+app.use(express.static(path.join(__dirname, 'publics')));
 
 module.exports = app;

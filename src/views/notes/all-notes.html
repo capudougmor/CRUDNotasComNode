@@ -1,0 +1,16 @@
+{% extends "layout.html" %}
+
+{% block content %}
+        <h3>TEste</h3>
+    {% for note in notes %}
+        <div class="row">
+            <div class="col-md-3">
+                <div class="card">
+                    <div class="card-body">
+                        <h4>{{note.title}}</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+{% endblock %}

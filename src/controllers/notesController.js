@@ -1,16 +1,29 @@
 const notesController = {}
+const Note = require('../models/Note')
 
 notesController.renderNoteForm = (req, res) => {
     res.render('notes/new-note.html')
 }
 
-notesController.createNewNote = (req, res) => {
-    console.log(req.body)
-    res.send('Rota criada')
-}
+// const notes = [
+//     {
+//         name: "Douglas",
+//         descreption: "asdgsagsdga"
+//     }
+// ]
 
-notesController.renderNotes = (req, res) => {
-    res.send('Todas as notas')
+notesController.createNewNote = async (req, res) => {
+    const {title, description} = req.body;
+    const newNote = new Note({title, description})
+    await newNote.save().then(() => {
+        res.send('Nota criada')
+    }).catch((err) => {
+        res.send('Erro ao criar nota' +err)
+    })
+}
+notesController.renderNotes =  (req, res) => {
+    const notes =  Note.find();
+    res.render('notes/all-notes.html', {notes: notes})
 }
 
 notesController.renderEditForm = (req, res) => {
@@ -26,4 +39,4 @@ notesController.deleteNote = (req, res) => {
 }
 
 
-module.exports = notesController
+module.exports = notesController;
