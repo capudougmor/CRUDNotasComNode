@@ -1,10 +1,11 @@
 const notesController = {}
 
 notesController.renderNoteForm = (req, res) => {
-    res.send('Formulario')
+    res.render('notes/new-note.html')
 }
 
 notesController.createNewNote = (req, res) => {
+    console.log(req.body)
     res.send('Rota criada')
 }
 
