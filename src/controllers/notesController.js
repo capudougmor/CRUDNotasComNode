@@ -12,6 +12,14 @@ notesController.renderNoteForm = (req, res) => {
 //     }
 // ]
 
+/*notesController.renderNotes = (req, res) => {
+    Note.find().sort({date: "desc"}).then((notes) => {
+      res.render('notes/all-notes.html', {notes: notes})
+    }).catch((err) => {
+      req.send('error_msg', 'Houve um erro ao mostrar notas!')
+    })
+  }*/
+
 notesController.createNewNote = async (req, res) => {
     const {title, description} = req.body;
     const newNote = new Note({title, description})
@@ -21,10 +29,10 @@ notesController.createNewNote = async (req, res) => {
         res.send('Erro ao criar nota' +err)
     })
 }
-notesController.renderNotes =  (req, res) => {
-    const notes =  Note.find();
+notesController.renderNotes = async (req, res) => {
+    const notes = await Note.find();
     res.render('notes/all-notes.html', {notes: notes})
-}
+ }
 
 notesController.renderEditForm = (req, res) => {
     res.send('Form edit')

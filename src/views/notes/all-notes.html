@@ -1,16 +1,25 @@
 {% extends "layout.html" %}
 
 {% block content %}
-        <h3>TEste</h3>
-    {% for note in notes %}
+        <h3>Notas salvas</h3>
         <div class="row">
+            
+            {% for note in notes %}
             <div class="col-md-3">
-                <div class="card">
+                <div class="card my-2">
                     <div class="card-body">
-                        <h4>{{note.title}}</h4>
+                        <h4 class="card-title d-flex justify-content-between align-item-center">
+                            {{note.title}} <a href="/notes/edit/{{id}}"><i class="fa fa-pencil"></i></a>
+                        </h4>
+                        <p>{{note.description}} </p>
+                        <form action="/notes/delete/{{id}}" method="POST">
+                            <button class="btn btn-danger btn-block btn-sn">
+                                Delete
+                            </button>
+                        </form>
                     </div>
                 </div>
             </div>
+            {% endfor %}
         </div>
-    {% endfor %}
 {% endblock %}
