@@ -3,7 +3,7 @@
 {% block content %}
         <h3>Notas salvas</h3>
         <div class="row">
-            
+
             {% for note in notes %}
             <div class="col-md-3">
                 <div class="card my-2">
@@ -12,8 +12,9 @@
                             {{note.title}} <a href="/notes/edit/{{id}}"><i class="fa fa-pencil"></i></a>
                         </h4>
                         <p>{{note.description}} </p>
-                        <form action="/notes/delete/{{id}}" method="POST">
-                            <button class="btn btn-danger btn-block btn-sn">
+                        <form action="/notes/delete/{{note._id}}?_method=DELETE" method="POST"><!--necessita do metodo override-->
+                            <input type="hidden" name="_method" value="DELETE ">
+                            <button type="submit" class="btn btn-danger btn-block btn-sn">
                                 Delete
                             </button>
                         </form>

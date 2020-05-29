@@ -24,13 +24,14 @@ notesController.createNewNote = async (req, res) => {
     const {title, description} = req.body;
     const newNote = new Note({title, description})
     await newNote.save().then(() => {
-        res.send('Nota criada')
+        res.redirect('/notes')
     }).catch((err) => {
         res.send('Erro ao criar nota' +err)
     })
 }
 notesController.renderNotes = async (req, res) => {
     const notes = await Note.find();
+    //console.log(notes)
     res.render('notes/all-notes.html', {notes: notes})
  }
 
@@ -42,8 +43,9 @@ notesController.updateNotes = (req, res) => {
     res.send('Update notes')
 }
 
-notesController.deleteNote = (req, res) => {
-    res.send('deleted note')
+notesController.deleteNote = async (req, res) => {
+    await Note.findByIdAndDelete(req.params.id)
+    res.redirect('/notes')
 }
 
 

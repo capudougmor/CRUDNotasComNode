@@ -2,6 +2,7 @@ const express = require('express')
 const path = require('path') 
 const app = express()
 const nunjucks = require('nunjucks')
+const methodOverride = require('method-override')//metodo para leitura dos metodo e m rotas
 
 //Configuracoes
 //app.set('views', path.join(__dirname, 'views'))
@@ -15,6 +16,7 @@ nunjucks.configure('./src/views',{
 
 //Middlewares
 app.use(express.urlencoded({extended: false}))
+app.use(methodOverride('_method'))
 
 //Variaveis globais
 
