@@ -36,7 +36,7 @@ notesController.renderNotes = async (req, res) => {
  }
 
 notesController.renderEditForm = (req, res) => {
-    res.send('Form edit')
+    res.render('notes/edit-note.html')
 }
 
 notesController.updateNotes = (req, res) => {
