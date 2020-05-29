@@ -9,7 +9,7 @@
                 <div class="card my-2">
                     <div class="card-body">
                         <h4 class="card-title d-flex justify-content-between align-item-center">
-                            {{note.title}} <a href="/notes/edit/{{id}}"><i class="fa fa-pencil"></i></a>
+                            {{note.title}} <a href="/notes/edit/{{note.id}}"><i class="fa fa-pencil"></i></a>
                         </h4>
                         <p>{{note.description}} </p>
                         <form action="/notes/delete/{{note._id}}?_method=DELETE" method="POST"><!--necessita do metodo override-->
