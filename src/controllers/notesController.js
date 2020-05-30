@@ -12,23 +12,18 @@ notesController.renderNoteForm = (req, res) => {
 //     }
 // ]
 
-/*notesController.renderNotes = (req, res) => {
-    Note.find().sort({date: "desc"}).then((notes) => {
-      res.render('notes/all-notes.html', {notes: notes})
-    }).catch((err) => {
-      req.send('error_msg', 'Houve um erro ao mostrar notas!')
-    })
-  }*/
 
 notesController.createNewNote = async (req, res) => {
     const {title, description} = req.body;
     const newNote = new Note({title, description})
     await newNote.save().then(() => {
+        req.flash('success_msg', 'Note added successfully')
         res.redirect('/notes')
     }).catch((err) => {
         res.send('Erro ao criar nota' +err)
     })
 }
+
 notesController.renderNotes = async (req, res) => {
     const notes = await Note.find();
     //console.log(notes)
@@ -43,6 +38,7 @@ notesController.renderEditForm = async (req, res) => {
 notesController.updateNotes = async (req, res) => {
     const { title, description } = req.body
     await Note.findByIdAndUpdate(req.params.id, {title, description})
+    req.flash('success_msg', 'Note updated successfully')
     res.redirect('/notes')
 }
 
