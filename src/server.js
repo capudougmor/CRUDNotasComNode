@@ -19,23 +19,23 @@ nunjucks.configure('./src/views',{
 //Middlewares
 app.use(express.urlencoded({extended: false}))
 app.use(methodOverride('_method'))//metodo usado para complementar as rotas no mongoose
-app.use(session({
-    secret: 'secret',
-    resave: true,
-    saveUninitialized: true
-}))
-app.use(flash)
+// app.use(session({
+//     secret: 'secret',
+//     resave: true,
+//     saveUninitialized: true
+// }))
+// app.use(flash)
 
 //Variaveis globais
-app.use((req, res, next) => {
-    res.locals.success_msg = req.flash('success_msg')
-    next()
-})
+// app.use((req, res, next) => {
+//     res.locals.success_msg = req.flash('success_msg')
+//     next()
+// })
 
 //Routes
 app.use(require('./routes/index.routes.js'))
 app.use(require('./routes/notes.routes.js'))
-
+app.use(require('./routes/users.routes.js'))
 
 //estaticos
 app.use(express.static(path.join(__dirname, 'publics')));
