@@ -5,7 +5,8 @@ usersController.renderSingUpForm = (req, res) => {
 }
 
 usersController.singUp = (req, res) => {
-    res.send('Singup')
+    console.log(req.body)
+    res.send('recebido')
 }
 
 usersController.renderSinginForm = (req, res) => {
