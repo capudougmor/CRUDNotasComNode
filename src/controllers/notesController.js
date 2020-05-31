@@ -5,14 +5,6 @@ notesController.renderNoteForm = (req, res) => {
     res.render('notes/new-note.html')
 }
 
-// const notes = [
-//     {
-//         name: "Douglas",
-//         descreption: "asdgsagsdga"
-//     }
-// ]
-
-
 notesController.createNewNote = async (req, res) => {
     const {title, description} = req.body;
     const newNote = new Note({title, description})
