@@ -16,3 +16,12 @@
         </button>
     </div>
 {% endfor %}
+
+{% for message in errors_msg %}
+    <div class="alert alert-danger alert-dismissible fade show" role="alert"> 
+        {{message}}
+        <button type="button" class="close" data-dismis="alert" aria-label="close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+{% endfor %}

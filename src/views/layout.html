@@ -12,9 +12,9 @@
 </head>
 <body>
     {% include "partials/navigation.html" %}
-    {% include "partials/messages.html" %}
     
     <main class="container p-5">
+        {% include "partials/messages.html" %}
         {% block content %}
 
         {% endblock %}

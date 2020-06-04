@@ -1,10 +1,12 @@
 const usersController = {}
 
+const User = require('../models/User')
+
 usersController.renderSingUpForm = (req, res) => {
     res.render('users/singUp.html')
 }
 
-usersController.singUp = (req, res) => {
+usersController.singUp = async (req, res) => {
     const errors = []
 
     const {nome, email, senha, confirme_senha} = req.body
@@ -16,13 +18,23 @@ usersController.singUp = (req, res) => {
     }
     if(errors.length > 0) {
         res.render('users/singUp.html', {
-            errors,     
+            errors,  
+            nome, 
+            email
         })
     }else {
-        res.send('recebido')
-    }
+        const emailUser = await User.findOne({email: email})
+        if(emailUser) {
+            req.flash('errors_msg', 'Este email já existe!')
+            res.redirect('/users/singup')
+        } else {
+            const newUser = new User({nome, email, senha})
+            await newUser.save()
+            res.redirect('/users/singin')
+        }
+    } 
 
-    console.log(req.body)
+    // console.log(req.body)
     
 }
 
