@@ -11,10 +11,14 @@ usersController.singUp = async (req, res) => {
 
     const {nome, email, senha, confirme_senha} = req.body
     if(senha != confirme_senha) {
-        errors.push({text: 'Senhas diferentes'})
+        req.flash('errors_msg', 'Senhas diferentes!')
+        
+        // errors.push({text: 'Senhas diferentes'})
     }
     if(senha.length < 4) {
-        errors.push({text: 'Senhas com poucos digitos, colocar no minimo 4 digitos!'})
+        req.flash('errors_msg', 'Senhas com poucos digitos, colocar no minimo 4 digitos!')
+
+        // errors.push({text: 'Senhas com poucos digitos, colocar no minimo 4 digitos!'})
     }
     if(errors.length > 0) {
         res.render('users/singUp.html', {
@@ -29,12 +33,14 @@ usersController.singUp = async (req, res) => {
             res.redirect('/users/singup')
         } else {
             const newUser = new User({nome, email, senha})
+            newUser.senha = await newUser.encrypPassword(senha)
             await newUser.save()
+            req.flash('success_msg', 'Usuario registrado')
             res.redirect('/users/singin')
         }
+        console.log(emailUser)
     } 
 
-    // console.log(req.body)
     
 }
 
