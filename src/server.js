@@ -5,9 +5,12 @@ const nunjucks = require('nunjucks')
 const methodOverride = require('method-override')//metodo para leitura dos metodo e m rotas
 const flash = require('connect-flash')
 const session = require('express-session')
+const passport = require('passport')
 
 //Configuracoes
 //app.set('views', path.join(__dirname, 'views'))
+
+require('./config/passport')
 
  //nunjucks
 nunjucks.configure('./src/views',{
@@ -24,6 +27,8 @@ app.use(session({
     resave: true,
     saveUninitialized: true
 }))
+app.use(passport.initialize())
+app.use(passport.session())
 app.use(flash())
 
 // Variaveis globais
