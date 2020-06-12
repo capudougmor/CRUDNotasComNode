@@ -12,12 +12,12 @@ const { renderNoteForm,
 const { isAuthenticated } = require('../helpers/auth')
 
 router.get('/notes/add', isAuthenticated, renderNoteForm)
-router.post('/notes/new-note', createNewNote)
+router.post('/notes/new-note', isAuthenticated, createNewNote)
 
-router.get('/notes', renderNotes)
-router.get('/notes/edit/:id', renderEditForm)
-router.put('/notes/edit/:id', updateNotes)
-router.delete('/notes/delete/:id', deleteNote)
+router.get('/notes', isAuthenticated, renderNotes)
+router.get('/notes/edit/:id', isAuthenticated, renderEditForm)
+router.put('/notes/edit/:id', isAuthenticated, updateNotes)
+router.delete('/notes/delete/:id', isAuthenticated, deleteNote)
 
 
 module.exports = router
