@@ -10,7 +10,7 @@ const passport = require('passport')
 //Configuracoes
 //app.set('views', path.join(__dirname, 'views'))
 
-require('./config/passport')
+require('./config/passport')(passport)
 
  //nunjucks
 nunjucks.configure('./src/views',{
@@ -35,7 +35,7 @@ app.use(flash())
 app.use((req, res, next) => {
     res.locals.success_msg = req.flash('success_msg')
     res.locals.errors_msg = req.flash('errors_msg')
-    res.locals.errors = req.flash('errors')
+    res.locals.error = req.flash('error')
     next()
 })
 

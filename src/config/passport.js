@@ -1,35 +1,41 @@
 const passport = require('passport')
-const LocalStratefy = require('passport-local').Strategy
+const LocalStrategy = require('passport-local').Strategy
+const mongoose = require('mongoose')
+const bcrypt = require('bcryptjs')
 
-const User = require('../models/User')
+require('../models/User')
+const User = mongoose.model('User')
 
-passport.use(new LocalStratefy({
-  usernameField: 'email',
-  passwordField: 'password'
-}, async (email, password, done) => {
-  console.log('Usuario inexistente!')
 
-  const user = await User.findOne({email: email})
-  if(!user) {
-    return done(null, false, {message: 'Usuario inexistente!'})
-  } else {
-    const match = await user.matchPassword(password)
-    if(match) {
-      return done(null, user)
-    } else {
-      return done(null, false, {message: 'password incorreta!'})
-    }
-  }
-}))
+module.exports = function(passport) {
 
-passport.serializeUser((user, done) => {
-  done(null, user.id);
-});
+  passport.use(new LocalStrategy({
+    usernameField: 'email',
+    passwordField: 'senha'
+  }, (email, senha, done) => {
+    
+    User.findOne({email: email}).then((user) => {
+      if(!user) {
+      return done(null, false, {message: 'Usuario inexistente!'})
+      }
 
-passport.deserializeUser((id, done) => {
-  User.findById(id, (err, user) => {
-    done(err, user);
+      bcrypt.compare(senha, user.senha, (erro, batem) => {
+        if (batem){
+          return done(null, user)
+        } else {
+          return done(null, false, {message: 'Senha incorreta!'})
+        }
+      })
+    })
+  }))
+
+  passport.serializeUser((user, done) => {
+    done(null, user.id);
   });
-});
 
-module.exports = passport
+  passport.deserializeUser((id, done) => {
+    User.findById(id, (err, user) => {
+      done(err, user);
+    });
+  })
+}
