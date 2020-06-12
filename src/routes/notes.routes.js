@@ -1,9 +1,17 @@
 const { Router } = require('express')
 const router = Router()
 
-const { renderNoteForm, createNewNote, renderNotes, renderEditForm, updateNotes, deleteNote } = require('../controllers/notesController')
+const { renderNoteForm, 
+    createNewNote, 
+    renderNotes, 
+    renderEditForm, 
+    updateNotes, 
+    deleteNote 
+} = require('../controllers/notesController')
 
-router.get('/notes/add', renderNoteForm)
+const { isAuthenticated } = require('../helpers/auth')
+
+router.get('/notes/add', isAuthenticated, renderNoteForm)
 router.post('/notes/new-note', createNewNote)
 
 router.get('/notes', renderNotes)
