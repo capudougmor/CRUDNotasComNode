@@ -1,25 +1,5 @@
-html {
-}
-
 body {
-    background-color: beige;
-    display: flex;
-    width: 100vw;
-    height: 100vh;
-}
-
-.navbar {
-    display: block;
-    max-width: 20rem;
-}
-
-#navbarNav {
-    display: block!important;
-}
-
-#navbarNav .navbar-nav {
-    display: block!important;
-
+    background: #1488cc
 }
 
 .logo {
@@ -43,10 +23,4 @@ body {
     top: 0;
     left: 0;
     background: linear-gradient(to top, #f6b323, #f23b26 );
-}
-
-@media (max-width: 1200px) {
-    .navbar-light .navbar-toggler {
-        display: none;
-    }
 }
