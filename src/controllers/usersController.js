@@ -12,22 +12,22 @@ usersController.singUp = async (req, res) => {
 
     const {nome, email, senha, confirme_senha} = req.body
     if(senha != confirme_senha) {
-        req.flash('errors_msg', 'Senhas diferentes!')
-        
-        // errors.push({text: 'Senhas diferentes'})
+        errors.push({text: 'Senhas diferentes'})
     }
-    if(senha.length < 4) {
-        req.flash('errors_msg', 'Senhas com poucos digitos, colocar no minimo 4 digitos!')
 
-        // errors.push({text: 'Senhas com poucos digitos, colocar no minimo 4 digitos!'})
+    if(senha.length < 4) {
+        errors.push({text: 'Senhas com poucos digitos, colocar no minimo 4 digitos!'})
     }
+
     if(errors.length > 0) {
         res.render('users/singUp.html', {
             errors,  
             nome, 
             email
         })
-    }else {
+    }
+    
+    else {
         const emailUser = await User.findOne({email: email})
         if(emailUser) {
             req.flash('errors_msg', 'Este email já existe!')
