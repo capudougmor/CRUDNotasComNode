@@ -20,7 +20,7 @@
 <br>
 
 <p align="center">
-  <img alt="Frontend" src="https://i.ibb.co/nsQgxQr/Notas.gif" width="100%">
+  <img alt="Frontend" src="https://i.ibb.co/G3mGY1c/Nota-Facil.gif" width="100%">
 </p>
 
 ## :rocket: Tecnologias
