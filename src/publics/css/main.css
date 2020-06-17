@@ -26,21 +26,12 @@ body {
     width: 35%;
 }
 
-.jumbotron span.img{
-    background-image: url('../img/fogg-no-connection-2.png');
-    display: block;
-    height: 350px;
-    object-fit: cover;
-    width: auto;
-}
-
 .card {
     box-shadow: 0 -5px 15px -1px rgba(0 , 0, 0, 0.8);
     border: none;
 }
 
 .card {   
-    background: linear-gradient(to top, #f6b323, #f23b26 );
     overflow: hidden;
 }
 
@@ -50,7 +41,6 @@ body {
     height: 100px;
     top: 0;
     left: 0;
-    background: linear-gradient(to top, #f6b323, #f23b26 );
 }
 
 @media (max-width: 1200px) {
